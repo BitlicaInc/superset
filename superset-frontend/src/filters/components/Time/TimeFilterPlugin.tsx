@@ -22,7 +22,7 @@ import {
   getExtensionsRegistry,
 } from '@superset-ui/core';
 import { useCallback, useEffect } from 'react';
-import DateFilterControl from 'src/explore/components/controls/DateFilterControl';
+import EnhancedDateRangePicker from 'src/components/EnhancedDateRangePicker';
 import { PluginFilterTimeProps } from './types';
 import { FilterPluginStyle } from '../common';
 
@@ -89,7 +89,7 @@ export default function TimeFilterPlugin(props: PluginFilterTimeProps) {
   const DateFilterControlExtension = extensionsRegistry.get(
     'filter.dateFilterControl',
   );
-  const DateFilterComponent = DateFilterControlExtension ?? DateFilterControl;
+  const DateFilterComponent = DateFilterControlExtension ?? EnhancedDateRangePicker;
 
   const handleTimeRangeChange = useCallback(
     (timeRange?: string): void => {
