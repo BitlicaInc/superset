@@ -16,13 +16,14 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+
 import {
   styled,
   NO_TIME_RANGE,
   getExtensionsRegistry,
 } from '@superset-ui/core';
 import { useCallback, useEffect } from 'react';
-import DateFilterControl from 'src/explore/components/controls/DateFilterControl';
+import EnhancedDateRangePicker from 'src/components/EnhancedDateRangePicker';
 import { PluginFilterTimeProps } from './types';
 import { FilterPluginStyle } from '../common';
 
@@ -35,6 +36,7 @@ const TimeFilterStyles = styled(FilterPluginStyle)`
     margin-right: 0;
   }
 `;
+
 
 const ControlContainer = styled.div<{
   validateStatus?: 'error' | 'warning' | 'info';
@@ -89,7 +91,7 @@ export default function TimeFilterPlugin(props: PluginFilterTimeProps) {
   const DateFilterControlExtension = extensionsRegistry.get(
     'filter.dateFilterControl',
   );
-  const DateFilterComponent = DateFilterControlExtension ?? DateFilterControl;
+  const DateFilterComponent = DateFilterControlExtension ?? EnhancedDateRangePicker;
 
   const handleTimeRangeChange = useCallback(
     (timeRange?: string): void => {
