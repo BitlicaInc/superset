@@ -16,18 +16,17 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-
 import {
   styled,
   NO_TIME_RANGE,
   getExtensionsRegistry,
 } from '@superset-ui/core';
 import { useCallback, useEffect } from 'react';
-import EnhancedDateRangePicker from 'src/components/EnhancedDateRangePicker';
-import { PluginFilterTimeProps } from './types';
+import DateFilterControl from 'src/explore/components/controls/DateFilterControl';
+import { PluginFilterCustomTimeProps } from './types';
 import { FilterPluginStyle } from '../common';
 
-const TimeFilterStyles = styled(FilterPluginStyle)`
+const CustomTimeFilterStyles = styled(FilterPluginStyle)`
   display: flex;
   align-items: center;
   overflow-x: visible;
@@ -36,7 +35,6 @@ const TimeFilterStyles = styled(FilterPluginStyle)`
     margin-right: 0;
   }
 `;
-
 
 const ControlContainer = styled.div<{
   validateStatus?: 'error' | 'warning' | 'info';
@@ -72,7 +70,7 @@ const ControlContainer = styled.div<{
   }
 `;
 
-export default function TimeFilterPlugin(props: PluginFilterTimeProps) {
+export default function CustomTimeFilterPlugin(props: PluginFilterCustomTimeProps) {
   const {
     setDataMask,
     setHoveredFilter,
@@ -91,7 +89,7 @@ export default function TimeFilterPlugin(props: PluginFilterTimeProps) {
   const DateFilterControlExtension = extensionsRegistry.get(
     'filter.dateFilterControl',
   );
-  const DateFilterComponent = DateFilterControlExtension ?? EnhancedDateRangePicker;
+  const DateFilterComponent = DateFilterControlExtension ?? DateFilterControl;
 
   const handleTimeRangeChange = useCallback(
     (timeRange?: string): void => {
@@ -115,7 +113,7 @@ export default function TimeFilterPlugin(props: PluginFilterTimeProps) {
   }, [filterState.value]);
 
   return props.formData?.inView ? (
-    <TimeFilterStyles width={width} height={height}>
+    <CustomTimeFilterStyles width={width} height={height}>
       <ControlContainer
         ref={inputRef}
         validateStatus={filterState.validateStatus}
@@ -138,6 +136,6 @@ export default function TimeFilterPlugin(props: PluginFilterTimeProps) {
           isOverflowingFilterBar={isOverflowingFilterBar}
         />
       </ControlContainer>
-    </TimeFilterStyles>
+    </CustomTimeFilterStyles>
   ) : null;
 }

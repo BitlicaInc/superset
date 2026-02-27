@@ -16,8 +16,8 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-import { DEFAULT_D3_FORMAT, DEFAULT_D3_TIME_FORMAT } from '@superset-ui/core';
-import { BootstrapData, CommonBootstrapData } from './types/bootstrapTypes';
+import {DEFAULT_D3_FORMAT, DEFAULT_D3_TIME_FORMAT} from '@superset-ui/core';
+import {BootstrapData, CommonBootstrapData} from './types/bootstrapTypes';
 
 export const DATETIME_WITH_TIME_ZONE = 'YYYY-MM-DD HH:mm:ssZ';
 export const TIME_WITH_MS = 'HH:mm:ss.SSS';
@@ -181,6 +181,7 @@ export enum FilterPlugins {
   Select = 'filter_select',
   Range = 'filter_range',
   Time = 'filter_time',
+  CustomTime = 'filter_customtime',
   TimeColumn = 'filter_timecolumn',
   TimeGrain = 'filter_timegrain',
 }
